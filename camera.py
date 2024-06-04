@@ -1,4 +1,4 @@
-from picamera2 import PiCamera
+from picamera2 import Picamera2 as PiCamera
 from picamera2.encoders import JpegEncoder
 from picamera2.outputs import FileOutput
 import time
@@ -29,7 +29,7 @@ class VideoCamera(object):
     # def __init__(self, flip = False, file_type  = ".jpg", ):
     def __init__(self, file_type  = ".jpg", resolution=(320, 240), framerate=32, **kwargs):
         # self.vs = PiVideoStream(resolution=(1920, 1080), framerate=30).start()
-        # self.flip = flip # Flip frame vertically
+        self.flip = False #flip # Flip frame vertically
         self.file_type = file_type # image type i.e. .jpg
         self.camera = PiCamera()
 
@@ -56,9 +56,10 @@ class VideoCamera(object):
 
     def get_frame(self):
         frame = self.flip_if_needed(self.output.read())
-        ret, jpeg = cv.imencode(self.file_type, frame)
-        self.previous_frame = jpeg
-        return jpeg.tobytes()
+        # ret, jpeg = cv.imencode(self.file_type, frame)
+        self.previous_frame = frame
+        # return jpeg.tobytes()
+        return frame
 
     # Take a photo, called by camera button
     def take_picture(self, photo_string):
