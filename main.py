@@ -6,7 +6,7 @@ from flask_socketio import SocketIO
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'mylittlesecret!'
-socketio = SocketIO(app, debug=True, cors_allowed_origins='*', async_mode='eventlet')
+socketio = SocketIO(app, debug=True, cors_allowed_origins='*')
 
 pi_camera = VideoCamera(flip=False) # flip pi camera if upside down.
 pi_ugv = UGV()
