@@ -2,11 +2,8 @@ from flask import Flask, render_template, Response, request, send_from_directory
 from camera import VideoCamera
 from ugv import UGV
 import os
-from flask_socketio import SocketIO
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'mylittlesecret!'
-socketio = SocketIO(app, debug=True, cors_allowed_origins='*')
 
 pi_camera = VideoCamera(flip=False) # flip pi camera if upside down.
 pi_ugv = UGV()
@@ -33,36 +30,36 @@ def take_picture():
     pi_camera.take_picture()
     return "None"
 
-@socketio.on('my event')
+@app.route('/my event')
 def handle_my_event(req):
     print(f"my event {req}")
 
-@socketio.on('forward-keyup')
+@app.route('/forward-keyup')
 def handle_forward_keyup():
     print("forward-keyup")
     pi_ugv.forward_key_up()
 
-@socketio.on('left-keyup')
+@app.route('/left-keyup')
 def handle_left_keyup():
     print("left-keyup")
     pi_ugv.left_key_up()
 
-@socketio.on('right-keyup')
+@app.route('/right-keyup')
 def handle_right_keyup():
     print("right-keyup")
     pi_ugv.right_key_up()
 
-@socketio.on('forward-keydown')
+@app.route('/forward-keydown')
 def handle_forward_keydown():
     print("forward-keydown")
     pi_ugv.forward_key_down()
 
-@socketio.on('left-keydown')
+@app.route('/left-keydown')
 def handle_left_keydown():
     print("left-keydown")
     pi_ugv.left_key_down()
 
-@socketio.on('right-keydown')
+@app.route('/right-keydown')
 def handle_forward_keydown():
     print("right-keydown")
     pi_ugv.forward_key_down()
@@ -71,6 +68,6 @@ def handle_forward_keydown():
 if __name__ == '__main__':
     try:
         print("Starting socketio on 0.0.0.0")
-        socketio.run(app, host='0.0.0.0', debug=False)
+        app.run(host='0.0.0.0', debug=True, use_reloader=False)
     finally:
         pi_ugv.close()
