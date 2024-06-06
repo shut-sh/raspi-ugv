@@ -39,26 +39,32 @@ def handle_forward_keyup(req):
 
 @socketio.on('forward-keyup')
 def handle_forward_keyup():
+    print("forward-keyup")
     pi_ugv.forward_key_up()
 
 @socketio.on('left-keyup')
 def handle_left_keyup():
+    print("left-keyup")
     pi_ugv.left_key_up()
 
 @socketio.on('right-keyup')
 def handle_right_keyup():
+    print("right-keyup")
     pi_ugv.right_key_up()
 
 @socketio.on('forward-keydown')
 def handle_forward_keydown():
+    print("forward-keydown")
     pi_ugv.forward_key_down()
 
 @socketio.on('left-keydown')
 def handle_left_keydown():
+    print("left-keydown")
     pi_ugv.left_key_down()
 
 @socketio.on('right-keydown')
 def handle_forward_keydown():
+    print("right-keydown")
     pi_ugv.forward_key_down()
 
 
