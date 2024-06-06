@@ -33,6 +33,10 @@ def take_picture():
     pi_camera.take_picture()
     return "None"
 
+@socketio.on('my event')
+def handle_forward_keyup(req):
+    print(f"my event {req}")
+
 @socketio.on('forward-keyup')
 def handle_forward_keyup():
     pi_ugv.forward_key_up()
