@@ -34,7 +34,7 @@ def take_picture():
     return "None"
 
 @socketio.on('my event')
-def handle_forward_keyup(req):
+def handle_my_event(req):
     print(f"my event {req}")
 
 @socketio.on('forward-keyup')
