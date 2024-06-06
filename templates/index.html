@@ -31,7 +31,7 @@
               <div class="border-lg rounded-full bg-primary shadow-lg flex flex-col justify-center p-8 h-16" >
                 <i class="fa fa-angle-up font-bold text-xxl text-primary-content"></i>
               </div>
-              <div class="border-lg rounded-full bg-primary shadow-lg flex flex-col justify-center p-8 h-16" @mouseup="this.socket.emit('left-keyup')" @mousedown="this.socket.emit('left-keydown')">
+              <div class="border-lg rounded-full bg-primary shadow-lg flex flex-col justify-center p-8 h-16" @mouseup="socket.emit('left-keyup')" @mousedown="socket.emit('left-keydown')">
                 <i class="fa fa-angle-left font-bold text-xxl text-primary-content"></i>
               </div>
             </div>
@@ -42,10 +42,10 @@
           </div>
           <div class="flex flex-col justify-center">
             <div class="flex flex-col gap-4">
-              <div class="border-lg rounded-full bg-primary shadow-lg flex flex-col justify-center p-8 h-16" @mouseup="this.socket.emit('forward-keyup')" @mousedown="this.socket.emit('forward-keydown')">
+              <div class="border-lg rounded-full bg-primary shadow-lg flex flex-col justify-center p-8 h-16" @mouseup="socket.emit('forward-keyup')" @mousedown="socket.emit('forward-keydown')">
                 <i class="fa fa-angle-up font-bold text-xxl text-primary-content"></i>
               </div>
-              <div class="border-lg rounded-full bg-primary shadow-lg flex flex-col justify-center p-8 h-16" @mouseup="this.socket.emit('right-keyup')" @mousedown="this.socket.emit('right-keydown')">
+              <div class="border-lg rounded-full bg-primary shadow-lg flex flex-col justify-center p-8 h-16" @mouseup="socket.emit('right-keyup')" @mousedown="socket.emit('right-keydown')">
                 <i class="fa fa-angle-right font-bold text-xxl text-primary-content"></i>
               </div>
             </div>
