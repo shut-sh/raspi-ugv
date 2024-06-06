@@ -16,11 +16,8 @@
     <script>
       const socket = io();
       const so_emit = (event_name) => {
-        console.log("creating curried");
-        return () => {
-          console.log("emitting", event_name)
-          socket.emit(event_name);
-        };
+        console.log("emitting", event_name)
+        socket.emit(event_name);
       }
       document.addEventListener("alpine:init", function(event){
         console.log("on alpine-init");
