@@ -15,10 +15,18 @@
     <script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script>
     <script>
       const socket = io();
-      document.addEventListener("DOMContentLoaded", function(event){
+      const so_emit = (event_name) => {
+        console.log("creating curried");
+        return () => {
+          console.log("emitting", event_name)
+          socket.emit(event_name);
+        };
+      }
+      document.addEventListener("alpine:init", function(event){
+        console.log("on alpine-init");
         socket.on('connect', function() {
           socket.emit('my event', {data: 'I\'m connected!'});
-        });
+        });        
       });
     </script>
   </head>
@@ -31,7 +39,7 @@
               <div class="border-lg rounded-full bg-primary shadow-lg flex flex-col justify-center p-8 h-16" >
                 <i class="fa fa-angle-up font-bold text-xxl text-primary-content"></i>
               </div>
-              <div class="border-lg rounded-full bg-primary shadow-lg flex flex-col justify-center p-8 h-16" @mouseup="socket.emit('left-keyup')" @mousedown="socket.emit('left-keydown')">
+              <div class="border-lg rounded-full bg-primary shadow-lg flex flex-col justify-center p-8 h-16" @mouseup="so_emit('left-keyup')" @mousedown="so_emit('left-keydown')">
                 <i class="fa fa-angle-left font-bold text-xxl text-primary-content"></i>
               </div>
             </div>
@@ -42,10 +50,10 @@
           </div>
           <div class="flex flex-col justify-center">
             <div class="flex flex-col gap-4">
-              <div class="border-lg rounded-full bg-primary shadow-lg flex flex-col justify-center p-8 h-16" @mouseup="socket.emit('forward-keyup')" @mousedown="socket.emit('forward-keydown')">
+              <div class="border-lg rounded-full bg-primary shadow-lg flex flex-col justify-center p-8 h-16" @mouseup="so_emit('forward-keyup')" @mousedown="so_emit('forward-keydown')">
                 <i class="fa fa-angle-up font-bold text-xxl text-primary-content"></i>
               </div>
-              <div class="border-lg rounded-full bg-primary shadow-lg flex flex-col justify-center p-8 h-16" @mouseup="socket.emit('right-keyup')" @mousedown="socket.emit('right-keydown')">
+              <div class="border-lg rounded-full bg-primary shadow-lg flex flex-col justify-center p-8 h-16" @mouseup="so_emit('right-keyup')" @mousedown="so_emit('right-keydown')">
                 <i class="fa fa-angle-right font-bold text-xxl text-primary-content"></i>
               </div>
             </div>
