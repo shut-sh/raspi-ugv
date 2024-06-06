@@ -1,11 +1,15 @@
 from flask import Flask, render_template, Response, request, send_from_directory
 from camera import VideoCamera
+from ugv import UGV
 import os
+from flask_socketio import SocketIO
+
+app = Flask(__name__)
+app.config['SECRET_KEY'] = 'mylittlesecret!'
+socketio = SocketIO(app)
 
 pi_camera = VideoCamera(flip=False) # flip pi camera if upside down.
-
-# App Globals (do not edit)
-app = Flask(__name__)
+pi_ugv = UGV()
 
 @app.route('/')
 def index():
@@ -29,6 +33,33 @@ def take_picture():
     pi_camera.take_picture()
     return "None"
 
-if __name__ == '__main__':
+@socketio.on('forward-keyup')
+def handle_forward_keyup():
+    pi_ugv.forward_key_up()
 
-    app.run(host='0.0.0.0', debug=False)
+@socketio.on('left-keyup')
+def handle_left_keyup():
+    pi_ugv.left_key_up()
+
+@socketio.on('right-keyup')
+def handle_right_keyup():
+    pi_ugv.right_key_up()
+
+@socketio.on('forward-keydown')
+def handle_forward_keydown():
+    pi_ugv.forward_key_down()
+
+@socketio.on('left-keydown')
+def handle_left_keydown():
+    pi_ugv.left_key_down()
+
+@socketio.on('right-keydown')
+def handle_forward_keydown():
+    pi_ugv.forward_key_down()
+
+
+if __name__ == '__main__':
+    try:
+        socketio.run(app, host='0.0.0.0', debug=False)
+    finally:
+        pi_ugv.close()
