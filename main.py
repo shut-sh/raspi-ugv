@@ -70,6 +70,7 @@ def handle_forward_keydown():
 
 if __name__ == '__main__':
     try:
+        print("Starting socketio on 0.0.0.0")
         socketio.run(app, host='0.0.0.0', debug=False)
     finally:
         pi_ugv.close()

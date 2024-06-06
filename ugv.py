@@ -28,25 +28,25 @@ class UGV(object):
         GPIO.output(DRIVE_4, GPIO.LOW)
         GPIO.cleanup()
 
-    def forward_key_down(self):
+    def forward_key_up(self):
         GPIO.output(LEFT_MOTOR, GPIO.LOW)
         GPIO.output(RIGHT_MOTOR, GPIO.LOW)
         
-    def forward_key_up(self):
+    def forward_key_down(self):
         GPIO.output(LEFT_MOTOR, GPIO.HIGH)
         GPIO.output(RIGHT_MOTOR, GPIO.HIGH)
 
-    def left_key_down(self):
+    def left_key_up(self):
         GPIO.output(RIGHT_MOTOR, GPIO.LOW)
         
-    def left_key_up(self):
+    def left_key_down(self):
         GPIO.output(LEFT_MOTOR, GPIO.LOW)
         GPIO.output(RIGHT_MOTOR, GPIO.HIGH)
 
-    def right_key_down(self):
+    def right_key_up(self):
         GPIO.output(LEFT_MOTOR, GPIO.LOW)
         
-    def right_key_up(self):
+    def right_key_down(self):
         GPIO.output(LEFT_MOTOR, GPIO.HIGH)
         GPIO.output(RIGHT_MOTOR, GPIO.LOW)
         
