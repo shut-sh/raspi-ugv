@@ -33,36 +33,43 @@ def take_picture():
 @app.route('/my event')
 def handle_my_event(req):
     print(f"my event {req}")
+    return "None"
 
 @app.route('/forward-keyup')
 def handle_forward_keyup():
     print("forward-keyup")
     pi_ugv.forward_key_up()
+    return "None"
 
 @app.route('/left-keyup')
 def handle_left_keyup():
     print("left-keyup")
     pi_ugv.left_key_up()
+    return "None"
 
 @app.route('/right-keyup')
 def handle_right_keyup():
     print("right-keyup")
     pi_ugv.right_key_up()
+    return "None"
 
 @app.route('/forward-keydown')
 def handle_forward_keydown():
     print("forward-keydown")
     pi_ugv.forward_key_down()
+    return "None"
 
 @app.route('/left-keydown')
 def handle_left_keydown():
     print("left-keydown")
     pi_ugv.left_key_down()
+    return "None"
 
 @app.route('/right-keydown')
-def handle_forward_keydown():
+def handle_right_keydown():
     print("right-keydown")
     pi_ugv.forward_key_down()
+    return "None"
 
 
 if __name__ == '__main__':
