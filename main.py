@@ -68,7 +68,7 @@ def handle_left_keydown():
 @app.route('/right-keydown')
 def handle_right_keydown():
     print("right-keydown")
-    pi_ugv.forward_key_down()
+    pi_ugv.right_key_down()
     return "None"
 
 
