@@ -32,7 +32,8 @@
               <div class="border-lg rounded-full bg-primary shadow-lg flex flex-col justify-center p-8 h-16" >
                 <i class="fa fa-angle-up font-bold text-xxl text-primary-content"></i>
               </div>
-              <div class="border-lg rounded-full bg-primary shadow-lg flex flex-col justify-center p-8 h-16" @mouseup="so_emit('left-keyup')" @mousedown="so_emit('left-keydown')">
+              <div class="border-lg rounded-full bg-primary shadow-lg flex flex-col justify-center p-8 h-16" 
+                @mouseup="so_emit('left-keyup')" @mousedown="so_emit('left-keydown')" @touchstart.stop="so_emit('left-keydown')" @touchend.stop="so_emit('left-keyup')">
                 <i class="fa fa-angle-left font-bold text-xxl text-primary-content"></i>
               </div>
             </div>
@@ -43,10 +44,12 @@
           </div>
           <div class="flex flex-col justify-center">
             <div class="flex flex-col gap-4">
-              <div class="border-lg rounded-full bg-primary shadow-lg flex flex-col justify-center p-8 h-16" @mouseup="so_emit('forward-keyup')" @mousedown="so_emit('forward-keydown')">
+              <div class="border-lg rounded-full bg-primary shadow-lg flex flex-col justify-center p-8 h-16" 
+                @mouseup="so_emit('forward-keyup')" @mousedown="so_emit('forward-keydown')" @touchstart.stop="so_emit('forward-keydown')" @touchend.stop="so_emit('forward-keyup')">
                 <i class="fa fa-angle-up font-bold text-xxl text-primary-content"></i>
               </div>
-              <div class="border-lg rounded-full bg-primary shadow-lg flex flex-col justify-center p-8 h-16" @mouseup="so_emit('right-keyup')" @mousedown="so_emit('right-keydown')">
+              <div class="border-lg rounded-full bg-primary shadow-lg flex flex-col justify-center p-8 h-16" 
+                @mouseup="so_emit('right-keyup')" @mousedown="so_emit('right-keydown')" @touchstart.stop="so_emit('right-keydown')" @touchend.stop="so_emit('right-keyup')">
                 <i class="fa fa-angle-right font-bold text-xxl text-primary-content"></i>
               </div>
             </div>
