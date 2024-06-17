@@ -84,12 +84,12 @@ class UGV(object):
     
     def camera_up(self):
         self.logger.debug(f"tilt_angle: {self.tilt_angle}")
-        new_angle = self.tilt_angle + ANGLE_STEP
+        new_angle = self.tilt_angle - ANGLE_STEP
         self.set_tilt_angle(new_angle)
     
     def camera_down(self):
         self.logger.debug(f"tilt_angle: {self.tilt_angle}")
-        new_angle = self.tilt_angle - ANGLE_STEP
+        new_angle = self.tilt_angle + ANGLE_STEP
         self.set_tilt_angle(new_angle)
     
     def camera_left(self):
