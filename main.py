@@ -6,12 +6,12 @@ import os
 app = Flask(__name__)
 
 pi_camera = VideoCamera(flip=False) # flip pi camera if upside down.
-pi_ugv = UGV()
+pi_ugv = UGV(app.logger)
 
 DEBUG = True
 def debug(msg):
     if DEBUG:
-        print(msg)
+        app.logger.debug(msg)
 
 @app.route('/')
 def index():

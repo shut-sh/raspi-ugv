@@ -21,13 +21,14 @@ ANGLE_STEP = 5
 
 class UGV(object):
     
-    def __init__(self):
+    def __init__(self, logger):
         GPIO.setup(LEFT_MOTOR, GPIO.OUT)
         GPIO.setup(RIGHT_MOTOR, GPIO.OUT)
         self.pwm = PCA9685()
         self.pwm.setPWMFreq(50)
         self.pan_angle = 10
         self.tilt_angle = 10
+        self.logger = logger
 
     def close(self):
         GPIO.output(LEFT_MOTOR, GPIO.LOW)
@@ -76,21 +77,21 @@ class UGV(object):
             time.sleep(0.01)
     
     def camera_up(self):
-        print(f"tilt_angle: {self.tilt_angle}")
+        self.logger.debug(f"tilt_angle: {self.tilt_angle}")
         new_angle = self.tilt_angle + ANGLE_STEP
         self.set_tilt_angle(new_angle)
     
     def camera_down(self):
-        print(f"tilt_angle: {self.tilt_angle}")
+        self.logger.debug(f"tilt_angle: {self.tilt_angle}")
         new_angle = self.tilt_angle - ANGLE_STEP
         self.set_tilt_angle(new_angle)
     
     def camera_left(self):
-        print(f"pan_angle: {self.pan_angle}")
+        self.logger.debug(f"pan_angle: {self.pan_angle}")
         new_angle = self.pan_angle + ANGLE_STEP
         self.set_pan_angle(new_angle)
     
     def camera_right(self):
-        print(f"pan_angle: {self.pan_angle}")
+        self.logger.debug(f"pan_angle: {self.pan_angle}")
         new_angle = self.pan_angle - ANGLE_STEP
         self.set_pan_angle(new_angle)
