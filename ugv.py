@@ -63,7 +63,10 @@ class UGV(object):
     def set_pan_angle(self, angle):
         if angle > 170 or angle < 10:
             return
-        for i in range(self.pan_angle, angle, 1):
+        step = 1
+        if self.pan_angle > angle:
+            step = -1
+        for i in range(self.pan_angle, angle, step):
             self.pwm.setRotationAngle(PAN_NO, i)   
             self.pan_angle = i
             time.sleep(0.01)
@@ -71,7 +74,10 @@ class UGV(object):
     def set_tilt_angle(self, angle):
         if angle > 70 or angle < 10:
             return
-        for i in range(self.tilt_angle, angle, 1):
+        step = 1
+        if self.tilt_angle > angle:
+            step = -1
+        for i in range(self.tilt_angle, angle, step):
             self.pwm.setRotationAngle(TILT_NO, i)   
             self.tilt_angle = i
             time.sleep(0.01)
